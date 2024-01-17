@@ -1,11 +1,11 @@
-from config import _config
+from config import get_config
 
 import google.generativeai as genai
 
 
 class PMAgent:
 	def __init__(self):
-		config_content = _config()
+		config_content = get_config()
 		genai.configure(api_key=config_content["key"])
 		self._model = genai.GenerativeModel("gemini-pro")
 		self._tune = config_content["fine-tuning"]
