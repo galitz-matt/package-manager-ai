@@ -1,5 +1,3 @@
-import json
-
 from config import _config
 
 import google.generativeai as genai
