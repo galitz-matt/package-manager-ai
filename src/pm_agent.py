@@ -1,5 +1,4 @@
-from config import get_config
-
+from config import Configuration
 import google.generativeai as genai
 
 
