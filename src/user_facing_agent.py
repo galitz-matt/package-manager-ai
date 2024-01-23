@@ -16,3 +16,11 @@ class UserFacingAgent:
 		except ValueError:
 			return "I didn't quite get that. Try asking something else."
 
+	def get_memory(self):
+		return self._memory
+
+	def append_memory(self, conversation):
+		self._memory += f"\n {conversation}"
+
+	def clear_memory(self):
+		self._memory = ""
