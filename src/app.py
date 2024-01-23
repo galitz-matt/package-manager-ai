@@ -7,7 +7,14 @@ def client_loop():
 		query = input("Q: ")
 		if query == "quit":
 			break
-		print(f"A: {model.query(query)}\n")
+		if query == "resolved":
+			model.clear_memory()
+			print("A: Is there anything else you need help with?\n")
+			continue
+		response = model.query(query)
+		print(f"A: {response}\n")
+		model.append_memory(query)
+		model.append_memory(response)
 
 
 if __name__ == "__main__":

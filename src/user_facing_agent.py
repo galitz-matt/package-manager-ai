@@ -5,22 +5,21 @@ import google.generativeai as genai
 class UserFacingAgent:
 	def __init__(self):
 		self.config = Configuration()
-		genai.configure(api_key=self.config.get_key())
-		self._model = genai.GenerativeModel("gemini-pro")
-		self._tune = self.config.get_user_facing_model_tuning()
-		self._memory = ""
+		genai.configure(api_key=self.config.key())
+		self.model = genai.GenerativeModel("gemini-pro")
+		self.tune = self.config.ufm_tune()
+		self.prompt = self.config.memory_prompt()
+		self.memory = ""
 
 	def query(self, query: str) -> str:
 		try:
-			return self._model.generate_content(self._tune + "\n\n" + query).text
+			return self.model.generate_content(f"{self.prompt}\n\n{self.memory}\n{query}").text
+		#	return self.model.generate_content(f"{self.tune}\n\n{self.prompt}\n\n{self.memory}\n{query}").text
 		except ValueError:
 			return "I didn't quite get that. Try asking something else."
 
-	def get_memory(self):
-		return self._memory
-
 	def append_memory(self, conversation):
-		self._memory += f"\n {conversation}"
+		self.memory += f"{conversation}\n"
 
 	def clear_memory(self):
-		self._memory = ""
+		self.memory = ""

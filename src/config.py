@@ -8,12 +8,13 @@ def _load_json_file(file_name: str):
 
 class Configuration:
 	def __init__(self):
-		self._config = _load_json_file("../docs/config.json")
-		self._key = self._config["key"]
-		self._ufmodel_tune = self._config["user-facing-model-tuning"]
+		self.config = _load_json_file("../docs/config.json")
 
-	def get_key(self):
-		return self._key
+	def key(self):
+		return self.config["key"]
 
-	def get_user_facing_model_tuning(self):
-		return self._ufmodel_tune
+	def ufm_tune(self):
+		return self.config["user-facing-model-tuning"]
+
+	def memory_prompt(self):
+		return self.config["memory-prompt"]
