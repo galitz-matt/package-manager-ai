@@ -11,4 +11,8 @@ class UserFacingAgent:
 		self._memory = ""
 
 	def query(self, query: str) -> str:
-		return self._model.generate_content(self._tune + "\n\n" + query).text
+		try:
+			return self._model.generate_content(self._tune + "\n\n" + query).text
+		except ValueError:
+			return "I didn't quite get that. Try asking something else."
+

@@ -7,10 +7,10 @@ def _load_json_file(file_name: str):
 
 
 class Configuration:
-	def __init__(self, json_file):
-		self.config = _load_json_file("../docs/config.json")
-		self._key = json_file["key"]
-		self._ufmodel_tune = json_file["user-facing-model-tuning"]
+	def __init__(self):
+		self._config = _load_json_file("../docs/config.json")
+		self._key = self._config["key"]
+		self._ufmodel_tune = self._config["user-facing-model-tuning"]
 
 	def get_key(self):
 		return self._key
