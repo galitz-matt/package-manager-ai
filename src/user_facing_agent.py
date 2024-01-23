@@ -2,9 +2,9 @@ from config import Configuration
 import google.generativeai as genai
 
 
-class PMAgent:
+class UserFacingAgent:
 	def __init__(self):
-		config_content = get_config()
+		self.config = Configuration()
 		genai.configure(api_key=config_content["key"])
 		self._model = genai.GenerativeModel("gemini-pro")
 		self._tune = config_content["fine-tuning"]
