@@ -13,8 +13,7 @@ class UserFacingAgent:
 
 	def query(self, query: str) -> str:
 		try:
-			return self.model.generate_content(f"{self.prompt}\n\n{self.memory}\n{query}").text
-		#	return self.model.generate_content(f"{self.tune}\n\n{self.prompt}\n\n{self.memory}\n{query}").text
+			return self.model.generate_content(f"{self.tune}\n\n{self.prompt}\n\n{self.memory}\n{query}").text
 		except ValueError:
 			return "I didn't quite get that. Try asking something else."
 

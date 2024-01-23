@@ -11,9 +11,10 @@ def client_loop():
 			model.clear_memory()
 			print("A: Is there anything else you need help with?\n")
 			continue
+		# handle installation step, we don't want instructions, we want: installing... another model might handle this
+		model.append_memory(query)
 		response = model.query(query)
 		print(f"A: {response}\n")
-		model.append_memory(query)
 		model.append_memory(response)
 
 
